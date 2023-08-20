@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-secondary-theme shadow-effect ">
+        <div class="card-body text-center">
+          <h3 class="text-color"> All Subscribers</h3>
+          <p class="text-color">From here you can manage your Subscribers</p>
+          <button class="btn btn-warning ms-2" routerLink="/">Back to Dahboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <div class="card shadow-effect">
+        <div class="card-body">
+          <table class="table border-top border-bottom w-100 " style="table-layout:fixed;">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let sub of subscriberArray ; let i = index" >
+                <td>{{ i+1 }}</td>
+                <td>{{ sub.data.name }}</td>
+                <td>{{ sub.data.email }}</td>
+                  <td>
+                    <button class="btn btn-danger btn-sm ms-3" (click)="onDelete(sub.id , sub.data.name)" >Delete</button>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

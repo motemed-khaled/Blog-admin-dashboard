@@ -1,0 +1,72 @@
+<div class="container m-5">
+  <div class="row">
+    <div class="col-md-12 bg-secondary-theme p-5 shadow-effect">
+      <h3 class="text-center text-theme-primary">{{ formStatus }} Categories</h3>
+      <p class="text-center mb-5 text-color">
+        You can {{ formStatus }} categories from here ...!
+      </p>
+
+      <form
+        class="text-center d-flex"
+        #catogryForm="ngForm"
+        (ngSubmit)="onSubmit(catogryForm)"
+      >
+        <div class="form-group col-md-10">
+          <input
+            type="text"
+            required
+            #newCategory="ngModel"
+            name="category"
+            [(ngModel)]="formCategory"
+            class="form-control shadow-effect"
+            placeholder="{{ formStatus }} New Categories"
+            [ngClass]="{
+              'is-invalid': newCategory.touched && newCategory.invalid
+            }"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="newCategory.touched && newCategory.invalid"
+          >
+            Category field is required
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button class="btn d-block btn-info mb-2 btn-theme" [disabled]="catogryForm.invalid">
+            {{ formStatus }} Category
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row mt-5 mb-5">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card shadow-effect">
+        <div class="card-body">
+          <table class="table border-top border-bottom ">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Catogry</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of catogeyArray ; let i = index">
+                <th scope="row">{{ i+1 }}</th>
+                <td>{{ item.data.catogry }}</td>
+                <td>
+                  <button class="btn btn-warning btn-sm" (click)="onEdit(item.data.catogry , item.id)">Edit</button>
+                  <button class="btn btn-danger ms-2 btn-sm" (click)="onDelete( item.id , item.data.catogry )">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

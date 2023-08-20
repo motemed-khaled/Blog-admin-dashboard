@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-secondary-theme shadow-effect ">
+        <div class="card-body text-center">
+          <h3 class="text-color"> All Blog Posts</h3>
+          <p class="text-color">From here you can manage your blog posts</p>
+          <button class="btn text-white bg-theme" routerLink="/posts/new">Add New Post</button>
+          <button class="btn btn-warning ms-2" routerLink="/">Back to Dahboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <div class="card shadow-effect">
+        <div class="card-body">
+          <table class="table border-top border-bottom w-100 " style="table-layout:fixed;">
+            <thead>
+              <tr>
+                <th>post Image</th>
+                <th>Title</th>
+                <th>Excerpt</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let post of postsData">
+                <td ><img style="width: 300px; height: 150px;" class="img-fluid" [src]="post.data.postImgPath" alt=""></td>
+                <td>{{ post.data.title }}</td>
+                <td>{{ post.data.excerpt }}</td>
+                <td>{{ post.data.category.category }}</td>
+                <td>{{ post.data.createdAt.toMillis() | date }}</td>
+                  <td>
+                    <button class="btn btn-warning btn-sm" routerLink="/posts/new" [queryParams]="{id:post.id}">Edit</button>
+                    <button class="btn btn-danger btn-sm ms-3" (click)="deleteOne(post.data.postImgPath , post.id)">Delete</button>
+                    <button *ngIf="!post.data.isFeature" class="btn btn-success btn-sm mt-3" (click)="onFeature(post.id , true)">Mark Featured</button>
+                    <button *ngIf="post.data.isFeature" class="btn btn-info btn-sm mt-3" (click)="onFeature(post.id , false)">Remove Featured</button>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

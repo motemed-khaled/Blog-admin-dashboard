@@ -1,0 +1,16 @@
+input[type = text] {
+  display: block;
+  height: 60px;
+  padding-left: 20px;
+  font-size: 13px;
+  width: 90%;
+  border: none;
+}
+
+.alert {
+  width: 90%;
+}
+
+th , td {
+  color: var(--body-text-color);
+}
